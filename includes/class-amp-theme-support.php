@@ -2552,7 +2552,7 @@ class AMP_Theme_Support {
 		wp_enqueue_style(
 			'amp-paired-browsing-app',
 			amp_get_asset_url( '/css/amp-paired-browsing-app-compiled.css' ),
-			[],
+			[ 'dashicons' ],
 			AMP__VERSION
 		);
 
