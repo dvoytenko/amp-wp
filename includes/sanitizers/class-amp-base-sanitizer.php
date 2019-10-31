@@ -485,7 +485,7 @@ abstract class AMP_Base_Sanitizer {
 			$node = $attribute;
 		}
 		$should_remove = $this->should_sanitize_validation_error( $validation_error, compact( 'node' ) );
-		if ( $should_remove ) {
+		if ( $should_remove && $element === $node->parentNode ) {
 			$element->removeAttributeNode( $node );
 			$this->clean_up_after_attribute_removal( $element, $node, $validation_error );
 		}
