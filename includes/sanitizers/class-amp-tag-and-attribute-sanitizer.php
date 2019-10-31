@@ -526,6 +526,8 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 			}
 		}
 
+		// @todo Need to pass the $tag_spec['spec_name'] into the validation errors for each.
+		// @todo Will the is_missing_mandatory_attribute check here even be needed because it will be checked
 		if ( ! empty( $attr_spec_list ) && $this->is_missing_mandatory_attribute( $attr_spec_list, $node ) ) {
 			$this->remove_node( $node );
 			return null;
@@ -1035,7 +1037,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 			$should_remove_node = false;
 			$attr_spec_rule     = $attr_spec_list[ $attr_name ];
 
-			// @todo check_attr_spec_rule_mandatory?
+			// Note that check_attr_spec_rule_mandatory is not necessary because it was done already in when calling is_missing_mandatory_attribute previously.
 			if ( isset( $attr_spec_rule[ AMP_Rule_Spec::VALUE ] ) &&
 				AMP_Rule_Spec::FAIL === $this->check_attr_spec_rule_value( $node, $attr_name, $attr_spec_rule ) ) {
 				$should_remove_node = true;
