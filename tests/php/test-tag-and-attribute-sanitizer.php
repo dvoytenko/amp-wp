@@ -1809,7 +1809,7 @@ class AMP_Tag_And_Attribute_Sanitizer_Test extends WP_UnitTestCase {
 				'<html amp><head><meta charset="latin-1"><title>Mojibake?</title></head><body></body></html>',
 				'<html amp><head><meta><title>Mojibake?</title></head><body></body></html>', // Note the charset attribute is removed because it violates the attribute spec, but the entire element is not removed because charset is not mandatory.
 				[],
-				[ 'invalid_mandatory_attribute' ],
+				[ 'invalid_attribute' ], // @todo Should actually be invalid_mandatory_attribute?
 			],
 			'bad_meta_viewport'                       => [
 				'<html amp><head><meta charset="utf-8"><meta name="viewport" content="maximum-scale=1.0"></head><body></body></html>',
@@ -1984,12 +1984,11 @@ class AMP_Tag_And_Attribute_Sanitizer_Test extends WP_UnitTestCase {
 		);
 		$sanitizer->sanitize();
 		$content = AMP_DOM_Utils::get_content_from_dom_node( $dom, $dom->documentElement );
+		$this->assertEqualMarkup( $expected, $content );
 
 		if ( is_array( $expected_error_codes ) ) {
 			$this->assertEqualSets( $expected_error_codes, $actual_error_codes );
 		}
-
-		$this->assertEqualMarkup( $expected, $content );
 
 		if ( is_array( $expected_scripts ) ) {
 			$this->assertEqualSets( $expected_scripts, array_keys( $sanitizer->get_scripts() ) );

@@ -597,6 +597,9 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 				$validation_error['element_attributes'][ $attribute->nodeName ] = $attribute->nodeValue;
 			}
 			foreach ( $disallowed_attributes as $disallowed_attribute ) {
+//				error_log( json_encode( $merged_attr_spec_list, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) );
+//				print_r($tag_spec);
+//				error_log( "REMOVE: " . $disallowed_attribute->nodeName );
 				$this->remove_invalid_attribute( $node, $disallowed_attribute, $validation_error );
 			}
 		}
