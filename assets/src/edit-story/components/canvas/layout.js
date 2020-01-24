@@ -85,7 +85,7 @@ function useLayoutParams( containerRef ) {
 		// See Layer's `grid` CSS above. Per the layout, the maximum available
 		// space for the page is:
 		const maxWidth = width - ( PAGE_NAV_WIDTH * 2 );
-		const maxHeight = height - MENU_HEIGHT - MIN_CAROUSEL_HEIGHT;
+		const maxHeight = height - HEADER_HEIGHT - MENU_HEIGHT - MIN_CAROUSEL_HEIGHT;
 
 		// Find the first size that fits within the [maxWidth, maxHeight].
 		let bestSize = ALLOWED_PAGE_SIZES[ ALLOWED_PAGE_SIZES.length - 1 ];
